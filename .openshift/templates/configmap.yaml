@@ -1,0 +1,63 @@
+apiVersion: v1
+data:
+  prometheus.yml: |+
+    # my global config
+    global:
+      scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+      evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+      # scrape_timeout is set to the global default (10s).
+
+    # Alertmanager configuration
+    alerting:
+      alertmanagers:
+      - static_configs:
+        - targets:
+          # - alertmanager:9093
+
+    # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+    rule_files:
+      # - "first_rules.yml"
+      # - "second_rules.yml"
+
+    # A scrape configuration containing exactly one endpoint to scrape:
+    # Here it's Prometheus itself.
+    scrape_configs:
+      # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+      - job_name: 'prometheus'
+
+        # metrics_path defaults to '/metrics'
+        # scheme defaults to 'http'.
+
+        static_configs:
+        - targets: ['spring-prometheus-demo-gws-demo.apps.cluster-e4eb.e4eb.sandbox539.opentlc.com']
+
+      - job_name: 'spring-actuator'
+        metrics_path: '/actuator/prometheus'
+        scrape_interval: 5s
+        static_configs:
+        - targets: ['spring-prometheus-demo-gws-demo.apps.cluster-e4eb.e4eb.sandbox539.opentlc.com']
+
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2021-05-06T13:00:23Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:data: {}
+    manager: oc
+    operation: Update
+    time: "2021-05-06T13:00:23Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:data:
+        f:prometheus.yml: {}
+    manager: Mozilla
+    operation: Update
+    time: "2021-05-06T15:31:47Z"
+  name: prometheus-config
+  namespace: gws-prometheus
+  resourceVersion: "1274141"
+  selfLink: /api/v1/namespaces/gws-prometheus/configmaps/prometheus-config
+  uid: a8fba6b4-8f5e-4c68-9003-5bd5b99b612a

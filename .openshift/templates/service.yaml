@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: main
+    app.openshift.io/vcs-uri: https://github.com/abryson-redhat/gws-prometheus.git
+    openshift.io/generated-by: OpenShiftWebConsole
+  creationTimestamp: "2021-05-06T15:07:57Z"
+  labels:
+    app: gws-prometheus
+    app.kubernetes.io/component: gws-prometheus
+    app.kubernetes.io/instance: gws-prometheus
+    app.kubernetes.io/part-of: gws-prometheus
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:app.openshift.io/vcs-ref: {}
+          f:app.openshift.io/vcs-uri: {}
+          f:openshift.io/generated-by: {}
+        f:labels:
+          .: {}
+          f:app: {}
+          f:app.kubernetes.io/component: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/part-of: {}
+      f:spec:
+        f:ports:
+          .: {}
+          k:{"port":9090,"protocol":"TCP"}:
+            .: {}
+            f:name: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+        f:selector:
+          .: {}
+          f:app: {}
+          f:deploymentconfig: {}
+        f:sessionAffinity: {}
+        f:type: {}
+    manager: Mozilla
+    operation: Update
+    time: "2021-05-06T15:21:21Z"
+  name: gws-prometheus
+  namespace: gws-prometheus
+  resourceVersion: "1271014"
+  selfLink: /api/v1/namespaces/gws-prometheus/services/gws-prometheus
+  uid: cb9c0a37-9e64-4fb3-b58f-75585c0bac52
+spec:
+  clusterIP: 172.30.226.61
+  ports:
+  - name: 9090-tcp
+    port: 9090
+    protocol: TCP
+    targetPort: 9090
+  selector:
+    app: gws-prometheus
+    deploymentconfig: gws-prometheus
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

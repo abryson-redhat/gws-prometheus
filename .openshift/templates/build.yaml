@@ -1,0 +1,103 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: main
+    app.openshift.io/vcs-uri: https://github.com/abryson-redhat/gws-prometheus.git
+    openshift.io/generated-by: OpenShiftWebConsole
+  creationTimestamp: "2021-05-06T15:07:57Z"
+  labels:
+    app: gws-prometheus
+    app.kubernetes.io/component: gws-prometheus
+    app.kubernetes.io/instance: gws-prometheus
+    app.kubernetes.io/part-of: gws-prometheus
+  managedFields:
+  - apiVersion: build.openshift.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:app.openshift.io/vcs-ref: {}
+          f:app.openshift.io/vcs-uri: {}
+          f:openshift.io/generated-by: {}
+        f:labels:
+          .: {}
+          f:app: {}
+          f:app.kubernetes.io/component: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/part-of: {}
+      f:spec:
+        f:output:
+          f:to:
+            .: {}
+            f:kind: {}
+            f:name: {}
+        f:runPolicy: {}
+        f:source:
+          f:contextDir: {}
+          f:git:
+            .: {}
+            f:ref: {}
+            f:uri: {}
+          f:sourceSecret:
+            .: {}
+            f:name: {}
+          f:type: {}
+        f:strategy:
+          f:dockerStrategy:
+            .: {}
+            f:dockerfilePath: {}
+          f:type: {}
+        f:triggers: {}
+    manager: Mozilla
+    operation: Update
+    time: "2021-05-06T15:07:57Z"
+  - apiVersion: build.openshift.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:lastVersion: {}
+    manager: openshift-apiserver
+    operation: Update
+    time: "2021-05-06T15:07:57Z"
+  name: gws-prometheus
+  namespace: gws-prometheus
+  resourceVersion: "1266818"
+  selfLink: /apis/build.openshift.io/v1/namespaces/gws-prometheus/buildconfigs/gws-prometheus
+  uid: 5b937d42-c241-4e19-96d1-e59267867b41
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: gws-prometheus:latest
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    contextDir: /
+    git:
+      ref: main
+      uri: https://github.com/abryson-redhat/gws-prometheus.git
+    sourceSecret:
+      name: git-ssh
+    type: Git
+  strategy:
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+    type: Docker
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - generic:
+      secretReference:
+        name: gws-prometheus-generic-webhook-secret
+    type: Generic
+  - github:
+      secretReference:
+        name: gws-prometheus-github-webhook-secret
+    type: GitHub
+  - type: ConfigChange
+status:
+  lastVersion: 1
